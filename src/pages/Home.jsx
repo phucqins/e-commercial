@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <Helmet title="Trang chủ">
       {/* slider start */}
-      <Slider data={sliderData} auto={false} control={true} timeOut={5000} />
+      <Slider data={sliderData} auto={true} control={true} timeOut={5000} />
       {/* slider end */}
 
       {/* section */}
