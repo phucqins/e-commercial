@@ -52,19 +52,19 @@ const Header = () => {
       <div className="container">
         <div className="header__logo">
           <Link to="/">
-            <img src={logo} alt=""/>
+            <img src={logo} alt="" />
           </Link>
         </div>
-        <div className="header__menu"  >
+        <div className="header__menu">
           <div className="header__menu__mobile-toggle" onClick={menuToggle}>
             <i className="bx bx-menu-alt-left"></i>
           </div>
-          <div className="header__menu__left" ref={menuLeft} >
+          <div className="header__menu__left" ref={menuLeft}>
             <div className="header__menu__left__close" onClick={menuToggle}>
               <i className="bx bx-chevron-left"></i>
             </div>
 
-            {mainNav.map((ele, i) => (
+            {mainNav.map((e, i) => (
               <div
                 onClick={menuToggle}
                 key={i}
@@ -72,27 +72,27 @@ const Header = () => {
                   i === activeNav ? "active" : ""
                 }`}
               >
-                <Link to={ele.path}>
-                  <span>{ele.display}</span>
+                <Link to={e.path}>
+                  <span>{e.display}</span>
                 </Link>
               </div>
             ))}
           </div>
           <div className="header__menu__right">
             <div className="header__menu__item header__menu__right__item">
-              <Link>
+             
                 <i className="bx bx-search"></i>
-              </Link>
+              
             </div>
             <div className="header__menu__item header__menu__right__item">
               <Link to="/cart">
                 <i className="bx bx-shopping-bag"></i>
               </Link>
             </div>
-            <div className="header__menu__item header__menu__right__item" onClick={menuToggle}>
-              <Link>
+            <div className="header__menu__item header__menu__right__item">
+              
                 <i className="bx bx-user"></i>
-              </Link>
+              
             </div>
           </div>
         </div>
