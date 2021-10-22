@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/e-commercial/static/css/main.8bb77f31.chunk.css",
-    "main.js": "/e-commercial/static/js/main.f45ac949.chunk.js",
-    "main.js.map": "/e-commercial/static/js/main.f45ac949.chunk.js.map",
+    "main.js": "/e-commercial/static/js/main.3c9fed44.chunk.js",
+    "main.js.map": "/e-commercial/static/js/main.3c9fed44.chunk.js.map",
     "runtime-main.js": "/e-commercial/static/js/runtime-main.a3f99fc5.js",
     "runtime-main.js.map": "/e-commercial/static/js/runtime-main.a3f99fc5.js.map",
-    "static/js/2.1de51c27.chunk.js": "/e-commercial/static/js/2.1de51c27.chunk.js",
-    "static/js/2.1de51c27.chunk.js.map": "/e-commercial/static/js/2.1de51c27.chunk.js.map",
+    "static/js/2.843fcbfd.chunk.js": "/e-commercial/static/js/2.843fcbfd.chunk.js",
+    "static/js/2.843fcbfd.chunk.js.map": "/e-commercial/static/js/2.843fcbfd.chunk.js.map",
     "index.html": "/e-commercial/index.html",
     "static/css/main.8bb77f31.chunk.css.map": "/e-commercial/static/css/main.8bb77f31.chunk.css.map",
-    "static/js/2.1de51c27.chunk.js.LICENSE.txt": "/e-commercial/static/js/2.1de51c27.chunk.js.LICENSE.txt",
+    "static/js/2.843fcbfd.chunk.js.LICENSE.txt": "/e-commercial/static/js/2.843fcbfd.chunk.js.LICENSE.txt",
     "static/media/Logo-2.3f227664.png": "/e-commercial/static/media/Logo-2.3f227664.png",
     "static/media/banner.17030f56.png": "/e-commercial/static/media/banner.17030f56.png",
     "static/media/boxicons.min.css": "/e-commercial/static/media/boxicons.cbd149c5.ttf",
@@ -43,8 +43,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.a3f99fc5.js",
-    "static/js/2.1de51c27.chunk.js",
+    "static/js/2.843fcbfd.chunk.js",
     "static/css/main.8bb77f31.chunk.css",
-    "static/js/main.f45ac949.chunk.js"
+    "static/js/main.3c9fed44.chunk.js"
   ]
 }
