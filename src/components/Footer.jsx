@@ -6,38 +6,38 @@ import logo from "../assets/images/Logo-2.png";
 const footerAboutLinks = [
   {
     display: "Giới thiệu",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Liên hệ",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Tuyển dụng",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Tin Tức",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Hệ thống cửa hàng",
-    path: "/about",
+    path: "/contact",
   },
 ];
 
 const footerCustomerLinks = [
   {
     display: "Chính sách đổi trả",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Chính sách bảo hành",
-    path: "/about",
+    path: "/contact",
   },
   {
     display: "Chính sách hoàn tiền",
-    path: "/about",
+    path: "/contact",
   },
 ];
 
@@ -81,14 +81,16 @@ const Footer = () => {
             </div>
           </div>
           <div>
-              <p>
-                  <Link to='/'>
-                  <img src={logo} className='footer__logo' alt="" />
-                  </Link>
-              </p>
-              <p>
-                 Hướng đến mục tiêu mang lại niềm vui ăn mặc mới mỗi ngày cho hàng triệu người tiêu dùng Việt. Hãy cùng Yolo hướng đến mục tiêu một cuộc sống năng động, tích cực hơn.
-              </p>
+            <p>
+              <Link to="/">
+                <img src={logo} className="footer__logo" alt="" />
+              </Link>
+            </p>
+            <p>
+              Hướng đến mục tiêu mang lại niềm vui ăn mặc mới mỗi ngày cho hàng
+              triệu người tiêu dùng Việt. Hãy cùng Yolo hướng đến mục tiêu một
+              cuộc sống năng động, tích cực hơn.
+            </p>
           </div>
         </Grid>
       </div>

@@ -1,0 +1,9 @@
+.accessories {
+  @include flex(center, center);
+
+  h1 {
+    line-height: 10rem;
+    font-size: 3.2rem;
+    color: $main-color;
+  }
+}

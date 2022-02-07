@@ -29,8 +29,8 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
+        (document.body.scrollTop > 80 && headerRef) ||
+        (document.documentElement.scrollTop > 80 && headerRef)
       ) {
         headerRef.current.classList.add("shrink");
       } else {
@@ -80,9 +80,7 @@ const Header = () => {
           </div>
           <div className="header__menu__right">
             <div className="header__menu__item header__menu__right__item">
-             
-                <i className="bx bx-search"></i>
-              
+              <i className="bx bx-search"></i>
             </div>
             <div className="header__menu__item header__menu__right__item">
               <Link to="/cart">
@@ -90,9 +88,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="header__menu__item header__menu__right__item">
-              
-                <i className="bx bx-user"></i>
-              
+              <i className="bx bx-user"></i>
             </div>
           </div>
         </div>

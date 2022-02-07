@@ -1,0 +1,11 @@
+.contact {
+  @include flex(center, center);
+  flex-direction: column;
+  padding-top: 10%;
+  & > * {
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1.25rem;
+  }
+}
