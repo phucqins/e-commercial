@@ -8,10 +8,8 @@ import Button from "./Button";
 
 import { remove } from "../redux/product-modal/productModalSlice";
 
-import productData from "../assets/fake-data/products";
-
 const ProductViewModal = () => {
-  const productSlug = useSelector((state) => {
+  const productID = useSelector((state) => {
     return state.productModal.value;
   });
   const dispatch = useDispatch();
@@ -19,12 +17,22 @@ const ProductViewModal = () => {
   const [product, setProduct] = useState(undefined);
 
   useEffect(() => {
-    setProduct(productData.getProductBySlug(productSlug));
-  }, [productSlug]);
+    const fetchProductByID = async () => {
+      const res = await fetch(
+        `https://phucnq-yolo.herokuapp.comapi/v1/products/${productID}`
+      );
+
+      const data = await res.json();
+      setProduct(data.data.data);
+    };
+    if (productID) {
+      fetchProductByID();
+    }
+  }, [productID]);
 
   return (
     <div
-      className={`product-view__modal ${product === undefined ? "" : "active"}`}
+      className={`product-view__modal ${productID === null ? "" : "active"}`}
     >
       <div className="product-view__modal__content">
         <ProductView product={product} setProduct={setProduct} />

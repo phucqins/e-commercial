@@ -83,7 +83,7 @@ const SliderItem = (props) => (
     </div>
     <div className="slider__item__image">
       <div className={`shape bg-${props.item.color}`}></div>
-      <img src={props.item.img} alt="" />
+      <img src={`/images/slider/${props.item.img}.png`} alt="" />
     </div>
   </div>
 );

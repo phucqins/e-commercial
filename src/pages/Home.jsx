@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Helmet from "../components/Helmet";
 import Slider from "../components/Slider";
-import sliderData from "../assets/fake-data/slider";
 import PolicyCard from "../components/PolicyCard";
 import policy from "../assets/fake-data/policy";
 import Grid from "../components/Grid";
 import ProductCard from "../components/ProductCard";
-import productData from "../assets/fake-data/products";
+
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import banner from "../assets/images/banner.png";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [sliderData, setSliderData] = useState([]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await Promise.all([
+          await fetch("https://phucnq-yolo.herokuapp.com/api/v1/products"),
+          await fetch(`https://phucnq-yolo.herokuapp.com/api/v1/slider`),
+        ]);
+
+        const data = await res[0].json();
+        const data2 = await res[1].json();
+        setProducts(data.data.data);
+        setSliderData(data2.data.data);
+      } catch (err) {
+        return <h1>404</h1>;
+      }
+    };
+    fetchProduct();
+  }, []);
+
   return (
     <Helmet title="Trang chủ">
       {/* slider start */}
@@ -23,7 +44,7 @@ const Home = () => {
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
             {policy.map((e, i) => (
-              <Link key={i} to="/policy">
+              <Link key={i} to="/contact">
                 <PolicyCard
                   name={e.name}
                   description={e.description}
@@ -40,14 +61,14 @@ const Home = () => {
       <SectionTitle>top sản phẩm bán chạy trong tuần</SectionTitle>
       <SectionBody>
         <Grid col={4} mdCol={2} smCol={1} gap={20}>
-          {productData.getProducts(4).map((e, i) => (
+          {products.slice(0, 4).map((e, i) => (
             <ProductCard
               key={i}
-              img01={e.image01}
-              img02={e.image02}
+              img01={e.images[0]}
+              img02={e.images[1]}
               name={e.title}
               price={Number(e.price)}
-              slug={e.slug}
+              id={e.id}
             />
           ))}
         </Grid>
@@ -58,14 +79,14 @@ const Home = () => {
       <SectionTitle>Sắp ra mắt</SectionTitle>
       <SectionBody>
         <Grid col={4} mdCol={2} smCol={1} gap={20}>
-          {productData.getProducts(8).map((e, i) => (
+          {products.slice(0, 8).map((e, i) => (
             <ProductCard
               key={i}
-              img01={e.image01}
-              img02={e.image02}
+              img01={e.images[0]}
+              img02={e.images[1]}
               name={e.title}
               price={Number(e.price)}
-              slug={e.slug}
+              id={e._id}
             />
           ))}
         </Grid>
@@ -86,20 +107,19 @@ const Home = () => {
       <SectionTitle>Phổ biến</SectionTitle>
       <SectionBody>
         <Grid col={4} mdCol={2} smCol={1} gap={20}>
-          {productData.getProducts(12).map((e, i) => (
+          {products.slice(0, 12).map((e, i) => (
             <ProductCard
               key={i}
-              img01={e.image01}
-              img02={e.image02}
+              img01={e.images[0]}
+              img02={e.images[1]}
               name={e.title}
               price={Number(e.price)}
-              slug={e.slug}
+              id={e._id}
             />
           ))}
         </Grid>
       </SectionBody>
       {/* popular products section end*/}
-
     </Helmet>
   );
 };

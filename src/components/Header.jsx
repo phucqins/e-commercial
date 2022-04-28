@@ -1,6 +1,10 @@
 import { React, useRef, useEffect } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { logout } from "../redux/authentication/authenticationSlice";
+import { removeAll } from "../redux/shopping-cart/cartItemsSlice";
 import logo from "../assets/images/Logo-2.png";
-import { Link, useLocation } from "react-router-dom";
 
 const mainNav = [
   {
@@ -22,9 +26,23 @@ const mainNav = [
 ];
 
 const Header = () => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const history = useHistory();
+
+  const cartItems = useSelector((state) => state.cartItems.value);
+
+  let items = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef(null);
+  const user = useSelector((state) => state.auth.user);
+  const logoutHandler = () => {
+    if (pathname.includes("user")) history.replace("/");
+    dispatch(logout());
+    dispatch(removeAll());
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -38,7 +56,7 @@ const Header = () => {
       }
     });
     return () => {
-      window.removeEventListener("scroll", "");
+      window.removeEventListener("scroll", {});
     };
   }, []);
 
@@ -83,12 +101,41 @@ const Header = () => {
               <i className="bx bx-search"></i>
             </div>
             <div className="header__menu__item header__menu__right__item">
+              <div className="header__menu__item__badge">
+                {items === 0 ? "" : items}
+              </div>
+
               <Link to="/cart">
                 <i className="bx bx-shopping-bag"></i>
               </Link>
             </div>
-            <div className="header__menu__item header__menu__right__item">
-              <i className="bx bx-user"></i>
+            <div className="header__menu__item header__menu__right__item hover">
+              {isLoggedIn && (
+                <>
+                  <i className="bx bx-user"></i>
+                  <ul className="hover__menu">
+                    <li>
+                      <Link
+                        to={
+                          user.role === "user" ? "/user/info" : "/user/products"
+                        }
+                      >
+                        <i className="bx bx-user"></i>
+                        Tài khoản
+                      </Link>
+                    </li>
+                    <li onClick={logoutHandler}>
+                      <i className="bx bx-log-out"></i>
+                      Đăng xuất
+                    </li>
+                  </ul>
+                </>
+              )}
+              {!isLoggedIn && (
+                <Link to="/login">
+                  <i className="bx bx-user"></i>
+                </Link>
+              )}
             </div>
           </div>
         </div>

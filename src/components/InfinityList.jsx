@@ -26,7 +26,6 @@ const InfinityList = (props) => {
           window.scrollY + window.innerHeight >=
           listRef.current.clientHeight + listRef.current.offsetTop + 200
         ) {
-          console.log("bottom reach");
           setLoad(true);
         }
       }
@@ -52,20 +51,15 @@ const InfinityList = (props) => {
 
   return (
     <div ref={listRef}>
-      {console.log(
-        Boolean(listRef),
-        Boolean(listRef.current),
-        Boolean(listRef && listRef.current)
-      )}
       <Grid col={3} mdCol={2} smCol={1} gap={20}>
         {data.map((e, i) => (
           <ProductCard
             key={i}
-            img01={e.image01}
-            img02={e.image02}
+            img01={e.images[0]}
+            img02={e.images[1]}
             name={e.title}
             price={Number(e.price)}
-            slug={e.slug}
+            id={e._id}
           />
         ))}
       </Grid>

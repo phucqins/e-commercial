@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
+
 import Helmet from "../components/Helmet";
-import productData from "../assets/fake-data/products";
 import category from "../assets/fake-data/category";
 import CheckBox from "../components/CheckBox";
 import colors from "../assets/fake-data/product-color";
 import size from "../assets/fake-data/product-size";
 import Button from "../components/Button";
 import InfinityList from "../components/InfinityList";
+import Loading from "../components/Loading";
 
 const Catalog = () => {
   const initFilter = {
@@ -15,13 +16,31 @@ const Catalog = () => {
     size: [],
   };
 
+  const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          "https://phucnq-yolo.herokuapp.com/api/v1/products"
+        );
+        const data = await res.json();
+        setIsLoading(false);
+        setProduct(data.data.data);
+      } catch (err) {
+        return;
+      }
+    };
+    fetchProduct();
+  }, []);
+
   const filterRef = useRef(null);
 
   const toggleFilterBar = () => filterRef.current.classList.toggle("active");
 
-  const productList = productData.getAllProducts();
-
-  const [products, setProducts] = useState(productList);
+  const [products, setProducts] = useState(product);
 
   const [filter, setFliter] = useState(initFilter);
 
@@ -70,7 +89,7 @@ const Catalog = () => {
   };
 
   const updateProducts = useCallback(() => {
-    let temp = productList;
+    let temp = product;
 
     if (filter.category.length > 0) {
       temp = temp.filter((e) => filter.category.includes(e.categorySlug));
@@ -91,7 +110,7 @@ const Catalog = () => {
     }
 
     setProducts(temp);
-  }, [filter, productList]);
+  }, [filter, product]);
 
   useEffect(() => {
     updateProducts();
@@ -103,9 +122,12 @@ const Catalog = () => {
     <Helmet title="Sản phẩm">
       <div className="catalog">
         <div className="catalog__filter" ref={filterRef}>
-            <div className="catalog__filter__close" onClick={()=>toggleFilterBar()}>
-                <i className="bx bx-chevron-left"></i>
-            </div>
+          <div
+            className="catalog__filter__close"
+            onClick={() => toggleFilterBar()}
+          >
+            <i className="bx bx-chevron-left"></i>
+          </div>
           <div className="catalog__filter__widget">
             <div className="catalog__filter__widget__title">
               danh mục sản phẩm
@@ -160,8 +182,7 @@ const Catalog = () => {
           <div className="catalog__filter__widget">
             <div className="catalog__filter__widget__content">
               <Button size="sm" onClick={clearFilter}>
-                {" "}
-                Xóa bộ lọc{" "}
+                Xóa bộ lọc
               </Button>
             </div>
           </div>
@@ -172,7 +193,7 @@ const Catalog = () => {
           </Button>
         </div>
         <div className="catalog__content">
-          <InfinityList data={products} />
+          {isLoading ? <Loading /> : <InfinityList data={products} />}
         </div>
       </div>
     </Helmet>

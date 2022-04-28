@@ -10,10 +10,10 @@ const ProductCard = (props) => {
   const dispatch = useDispatch();
   return (
     <div className="product-card">
-      <Link to={`/catalog/${props.slug}`}>
+      <Link to={`/catalog/${props.id}`}>
         <div className="product-card__image">
-          <img src={props.img01} alt="" />
-          <img src={props.img02} alt="" />
+          <img src={`/images/${props.img01}.jpg`} alt="" />
+          <img src={`/images/${props.img02}.jpg`} alt="" />
         </div>
         <h3 className="product-card__name">{props.name}</h3>
         <div className="product-card__price">
@@ -28,7 +28,7 @@ const ProductCard = (props) => {
           size="sm"
           icon="bx bx-cart"
           animate={true}
-          onClick={() => dispatch(set(props.slug))}
+          onClick={() => dispatch(set(props.id))}
         >
           chọn mua
         </Button>
@@ -42,7 +42,7 @@ ProductCard.propTypes = {
   img02: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  slug: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ProductCard;

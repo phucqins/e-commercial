@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import Button from "../components/Button";
 import numberWithCommas from "../utils/numberWithCommas";
 import { withRouter } from "react-router";
 import { addItem } from "../redux/shopping-cart/cartItemsSlice";
 import { useDispatch } from "react-redux";
+import { remove } from "../redux/product-modal/productModalSlice";
+import showAlert from "../utils/alert";
 
 const ProductView = (props) => {
   const dispatch = useDispatch();
-  let product = props.product;
-  if (product === undefined) {
+  let product = props.product || null;
+  if (product === null) {
     product = {
       price: 0,
       title: "",
       colors: [],
       size: [],
+      images: [],
     };
   }
 
-  const [preViewImg, setPreViewImg] = useState(product.image01);
+  const [preViewImg, setPreViewImg] = useState(product.images[0]);
 
   const [descriptionExpand, setDescriptionExpand] = useState(false);
 
@@ -38,11 +40,12 @@ const ProductView = (props) => {
 
   const check = () => {
     if (color === undefined) {
-      alert("Vui lòng chọn màu sắc!");
+      showAlert("error", "Vui lòng chọn màu sắc!");
       return false;
     }
     if (size === undefined) {
-      alert("Vui lòng chọn kích cỡ");
+      showAlert("error", "Vui lòng chọn kích cỡ !");
+
       return false;
     }
 
@@ -60,7 +63,7 @@ const ProductView = (props) => {
           price: product.price,
         })
       );
-      alert("Thêm thành công !");
+      showAlert("success", "Thêm thành công !");
     }
   };
 
@@ -75,6 +78,7 @@ const ProductView = (props) => {
           price: product.price,
         })
       );
+      dispatch(remove());
       props.history.push("/cart");
       if (props.setProduct) {
         props.setProduct(undefined);
@@ -83,7 +87,7 @@ const ProductView = (props) => {
   };
 
   useEffect(() => {
-    setPreViewImg(product.image01);
+    setPreViewImg(product.images[0]);
     setQuantity(1);
     setColor(undefined);
     setSize(undefined);
@@ -95,19 +99,19 @@ const ProductView = (props) => {
         <div className="product__images__list">
           <div
             className="product__images__list__item"
-            onClick={() => setPreViewImg(product.image01)}
+            onClick={() => setPreViewImg(product.images[0])}
           >
-            <img src={product.image01} alt="" />
+            <img src={`/images/${product.images[0]}.jpg`} alt="" />
           </div>
           <div
             className="product__images__list__item"
-            onClick={() => setPreViewImg(product.image02)}
+            onClick={() => setPreViewImg(product.images[1])}
           >
-            <img src={product.image02} alt="" />
+            <img src={`/images/${product.images[1]}.jpg`} alt="" />
           </div>
         </div>
         <div className="product__images__main">
-          <img src={preViewImg} alt="" />
+          <img src={`/images/${preViewImg}.jpg`} alt="" />
         </div>
         <div
           className={`product__description ${
@@ -221,10 +225,6 @@ const ProductView = (props) => {
       </div>
     </div>
   );
-};
-
-ProductView.propTypes = {
-  product: PropTypes.object.isRequired,
 };
 
 export default withRouter(ProductView);

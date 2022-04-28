@@ -2,6 +2,8 @@
   position: fixed;
   z-index: 101;
   padding-top: 100px;
+  padding-bottom: 100px;
+
   left: 0;
   top: 0;
   width: 100%;
@@ -35,5 +37,10 @@
   &.active &__content {
     opacity: 1;
     transform: translateY(0);
+  }
+  .form__group {
+    & > button:first-child {
+      margin-right: 1rem;
+    }
   }
 }

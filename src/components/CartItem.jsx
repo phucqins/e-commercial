@@ -17,7 +17,6 @@ const CartItem = (props) => {
 
   const updateQuantity = (opt) => {
     if (opt === "minus") {
-      console.log(quantity);
       dispatch(
         updateItem({ ...item, quantity: quantity === 1 ? 1 : quantity - 1 })
       );

@@ -57,11 +57,9 @@ export const cartItemsSlice = createSlice({
           state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
         )
       );
-      console.log(state.value);
     },
     updateItem: (state, action) => {
       const newItem = action.payload;
-      console.log(newItem);
       const item = state.value.filter(
         (e) =>
           e.slug === newItem.slug &&
@@ -107,10 +105,15 @@ export const cartItemsSlice = createSlice({
         )
       );
     },
+    removeAll: (state) => {
+      state.value = [];
+      localStorage.removeItem("cartItems");
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, updateItem } = cartItemsSlice.actions;
+export const { addItem, removeItem, updateItem, removeAll } =
+  cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;

@@ -1,16 +1,17 @@
 import React from "react";
 
-import { HashRouter } from "react-router-dom";
+// import { HashRouter } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
 
 import ProductViewModal from "./ProductViewModal";
 import Routes from "../routes/Routes";
+import { BrowserRouter } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div>
         <Header />
         <div className="container">
@@ -21,7 +22,7 @@ const Layout = () => {
         <Footer />
         <ProductViewModal />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

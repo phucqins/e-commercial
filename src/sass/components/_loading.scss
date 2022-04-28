@@ -1,0 +1,34 @@
+.loader {
+  animation: spin 1s infinite linear;
+  border: solid 2vmin transparent;
+  border-radius: 50%;
+  border-right-color: $main-color;
+  border-top-color: $main-color;
+  box-sizing: border-box;
+  height: 15vmin;
+  left: calc(50% - 10vmin);
+  position: fixed;
+  top: calc(50% - 10vmin);
+  width: 15vmin;
+  z-index: 1;
+  &:before {
+    animation: spin 2s infinite linear;
+    border: solid 2vmin transparent;
+    border-radius: 50%;
+    border-right-color: $main-color ;
+    border-top-color: $main-color ;
+    box-sizing: border-box;
+    content: "";
+    height: 11vmin;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 11vmin;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
