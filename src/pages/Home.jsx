@@ -9,14 +9,17 @@ import ProductCard from "../components/ProductCard";
 
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import banner from "../assets/images/banner.png";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [sliderData, setSliderData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setLoading(true);
         const res = await Promise.all([
           await fetch("https://phucnq-yolo.herokuapp.com/api/v1/products"),
           await fetch(`https://phucnq-yolo.herokuapp.com/api/v1/slider`),
@@ -26,12 +29,16 @@ const Home = () => {
         const data2 = await res[1].json();
         setProducts(data.data.data);
         setSliderData(data2.data.data);
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         return <h1>404</h1>;
       }
     };
     fetchProduct();
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <Helmet title="Trang chủ">
