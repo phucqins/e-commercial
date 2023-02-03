@@ -19,7 +19,7 @@ const ProductViewModal = () => {
   useEffect(() => {
     const fetchProductByID = async () => {
       const res = await fetch(
-        `https://phucnq-yolo.herokuapp.comapi/v1/products/${productID}`
+        `https://yolo-backend.onrender.com/api/v1/products/${productID}`
       );
 
       const data = await res.json();

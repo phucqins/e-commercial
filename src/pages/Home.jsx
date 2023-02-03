@@ -21,8 +21,8 @@ const Home = () => {
       try {
         setLoading(true);
         const res = await Promise.all([
-          await fetch("https://phucnq-yolo.herokuapp.com/api/v1/products"),
-          await fetch(`https://phucnq-yolo.herokuapp.com/api/v1/slider`),
+          await fetch("https://yolo-backend.onrender.com/api/v1/products"),
+          await fetch(`https://yolo-backend.onrender.com/api/v1/slider`),
         ]);
 
         const data = await res[0].json();

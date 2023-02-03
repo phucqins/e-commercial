@@ -24,7 +24,7 @@ const Catalog = () => {
       try {
         setIsLoading(true);
         const res = await fetch(
-          "https://phucnq-yolo.herokuapp.com/api/v1/products"
+          "https://yolo-backend.onrender.com/api/v1/products"
         );
         const data = await res.json();
         setIsLoading(false);

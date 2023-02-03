@@ -5,8 +5,8 @@ const updateUser = async (data, type, token) => {
   try {
     const url =
       type === "password"
-        ? "https://phucnq-yolo.herokuapp.com/api/v1/users/updateMyPassword"
-        : "https://phucnq-yolo.herokuapp.com/api/v1/users/updateMe";
+        ? "https://yolo-backend.onrender.com/api/v1/users/updateMyPassword"
+        : "https://yolo-backend.onrender.com/api/v1/users/updateMe";
 
     const res = await axios({
       method: "PATCH",

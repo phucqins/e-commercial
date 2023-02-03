@@ -25,7 +25,7 @@ const Login = () => {
     let url;
     let body;
     if (createAccount) {
-      url = `https://phucnq-yolo.herokuapp.com/api/v1/users/signup`;
+      url = `https://yolo-backend.onrender.com/api/v1/users/signup`;
       body = {
         name: nameInputRef.current.value,
         email: emailInputRef.current.value,
@@ -33,7 +33,7 @@ const Login = () => {
         passwordConfirm: confirmPasswordInputRef.current.value,
       };
     } else {
-      url = `https://phucnq-yolo.herokuapp.com/api/v1/users/login`;
+      url = `https://yolo-backend.onrender.com/api/v1/users/login`;
       body = {
         email: emailInputRef.current.value,
         password: passwordInputRef.current.value,

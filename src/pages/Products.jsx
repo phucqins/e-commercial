@@ -15,9 +15,9 @@ const Products = (props) => {
     const fetchProduct = async () => {
       const res = await Promise.all([
         await fetch(
-          `https://phucnq-yolo.herokuapp.com/api/v1/products/${props.match.params.id}`
+          `https://yolo-backend.onrender.com/api/v1/products/${props.match.params.id}`
         ),
-        await fetch(`https://phucnq-yolo.herokuapp.com/api/v1/products`),
+        await fetch(`https://yolo-backend.onrender.com/api/v1/products`),
       ]);
 
       const data = await res[0].json();

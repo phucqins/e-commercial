@@ -3,9 +3,9 @@ import showAlert from "./alert";
 
 const updateProduct = async (id, method, token, data = null) => {
   try {
-    let url = `https://phucnq-yolo.herokuapp.com/api/v1/products/${id}`;
+    let url = `https://yolo-backend.onrender.com/api/v1/products/${id}`;
     if (method === "POST")
-      url = `https://phucnq-yolo.herokuapp.com/api/v1/products`;
+      url = `https://yolo-backend.onrender.com/api/v1/products`;
 
     const res = await axios({
       method: method,
