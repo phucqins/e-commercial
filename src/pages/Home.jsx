@@ -10,11 +10,15 @@ import ProductCard from "../components/ProductCard";
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import banner from "../assets/images/banner.png";
 import Loading from "../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { setFirstLoad } from "../redux/authentication/authenticationSlice";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [sliderData, setSliderData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const isFirstLoad = useSelector((state) => state.auth.isFirstLoad);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -29,6 +33,9 @@ const Home = () => {
         const data2 = await res[1].json();
         setProducts(data.data.data);
         setSliderData(data2.data.data);
+        if (isFirstLoad) {
+          dispatch(setFirstLoad({ isFirstLoad: false }));
+        }
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -38,7 +45,7 @@ const Home = () => {
     fetchProduct();
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading isFirstLoad={isFirstLoad} />;
 
   return (
     <Helmet title="Trang chủ">

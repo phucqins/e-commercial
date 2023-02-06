@@ -14,6 +14,7 @@ const authSlice = createSlice({
     isLoggedIn: !!retrieveStoredSession().token,
     user: retrieveStoredSession().user,
     token: retrieveStoredSession().token,
+    isFirstLoad: true,
   },
   reducers: {
     login: (state, action) => {
@@ -32,9 +33,12 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload.user;
     },
+    setFirstLoad: (state, action) => {
+      state.isFirstLoad = action.payload.isFirstLoad;
+    },
   },
 });
 
-export const { login, logout, setUser } = authSlice.actions;
+export const { login, logout, setUser, setFirstLoad } = authSlice.actions;
 
 export default authSlice.reducer;
